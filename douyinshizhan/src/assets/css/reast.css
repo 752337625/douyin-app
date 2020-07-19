@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	border: 0;
+	font-size: 100%;
+	font-weight: 400;
+	vertical-align: baseline;
+	touch-action: none;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+
+html {
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+body,
+html {
+	font-family: PingFang SC, STHeitiSC-Light, Helvetica-Light, arial, sans-serif, Droid Sans Fallback;
+	height: 100%;
+	overflow: hidden;
+	background: #f2f3f4;
+	color: #2e3030;
+}
+
+a {
+	text-decoration: none
+}
+
+ul {
+	list-style: none;
+}
+
+/*横向或纵向滑动速度慢或者卡:只需要对滚动元素置*/
+.overflowScrolling {
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+}
