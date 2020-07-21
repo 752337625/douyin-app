@@ -3,9 +3,10 @@
 		<div class="van_swipe">
 			<swiper ref="mySwiper" :options="swiperOptions" @slideChangeTransitionStart="slideChangeTransitionStart">
 				<swiper-slide v-for="(item,index) in videoList" :key="item.id">
-					<video class="video_box" loop="loop" @timeupdate="timeupdate" @click="pause" @ended="ended" preload="meta" :poster="item.cover"
-					 playsInline webkit-playsinline="true" x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true"
-					 x5-video-orientation="portraint" ref="index">
+					<video class="video_box" loop="loop" @timeupdate="timeupdate" @click="pause" @ended="ended" preload="metadata"
+					 :poster="item.cover" playsInline webkit-playsinline="true" x5-playsinline x5-video-player-type="h5"
+					 x5-video-player-fullscreen="true" x5-video-orientation="portraint" ref="index" @loadeddata="loadeddata"
+					 @loadedmetadata="loadedmetadata" @loadstart="loadstart">
 						<source :src="item.url" type="audio/mp4">
 						</source>
 						<p> 当前浏览器不支持video标签 </p>
@@ -57,9 +58,34 @@
 		},
 		created( ) {},
 		mounted( ) {
+			this.$nextTick( ( ) => {
+				this.canvasImage( );
+			} )
 			//this.playvideo( );
 		},
 		methods: {
+			canvasImage( ) {},
+			loadeddata( a ) {
+				/* //当浏览器已加载音频/视频的当前帧时触发。3
+				let output = document.getElementsByClassName( "swiper-slide-active" )[ 0 ]
+				let video = document.querySelectorAll( 'video' )[ this.current ];
+				video.currentTime=1
+				let img = document.createElement( "img" );
+				let canvas = document.createElement( "canvas" )
+				canvas.width = video.width
+				canvas.height = video.height;
+				canvas.getContext( '2d' ).drawImage( video, 0, 0, canvas.width, canvas.height );
+				img.classList = "canvas_image"
+				img.src = canvas.toDataURL( "image/jpg" );
+				output.appendChild( img );
+				console.log( canvas.toDataURL( "image/png" ) ) */
+			},
+			loadedmetadata( a ) {
+				//当浏览器已加载音频/视频的元数据时触发。2
+			},
+			loadstart( a ) {
+				//当浏览器开始查找音频/视频时触发。1
+			},
 			slideChangeTransitionStart( sw ) {
 				//暂停当前视频
 				this.pause( )
